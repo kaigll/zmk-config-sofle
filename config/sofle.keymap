@@ -65,6 +65,7 @@
                 <&kp LALT>;
 
             label = "GBP";
+            wait-ms = <0>;
         };
 
         eur: eur {
@@ -135,7 +136,7 @@
             //              |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                        &trans     &trans    &trans    &trans     &trans   &to 3
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                        &trans     &trans    &trans    &trans     &trans   &tog 3
 &trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans                              &kp PG_UP  &trans    &kp UP    &trans     &kp N0   &trans
 &trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                            &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
 &trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &kp C_MUTE    &trans  &trans     &trans    &trans    &trans     &trans   &trans
@@ -158,7 +159,7 @@
 &kp T    &kp TAB    &kp Q   &kp W   &kp E   &kp R                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp G    &kp LCTRL  &kp A   &kp S   &kp D   &kp F                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp B    &kp LSHFT  &kp Z   &kp X   &kp C   &kp V   &media_pp_next_prev    &kp C_MUTE  &trans  &trans  &trans  &trans  &trans  &trans
-                    &kp N6  &kp N7  &kp N8  &kp N9  &trans                 &to 0       &trans  &trans  &trans  &trans
+                    &kp N6  &kp N7  &kp N8  &kp N9  &trans                 &tog 0      &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings =
