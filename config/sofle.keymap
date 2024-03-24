@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -11,20 +5,9 @@
 #define BASE 0
 #define LOWER 1
 #define RAISE 2
-#define ADJUST 3
+#define GAMING_LAYER 3
 
 / {
-    // Activate ADJUST layer by pressing raise and lower
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        adjust_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
-
     behaviors {
         media_pp_next_prev: media_pp_next_prev {
             compatible = "zmk,behavior-tap-dance";
@@ -88,11 +71,11 @@
 
         default_layer {
             // ------------------------------------------------------------------------------------------------------------
-            // |  `    |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
+            // | ESC/~ |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   -   |
+            // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   =   |
+            // | LCTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
+            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MEDIA |  | HOME  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
+            //               | GUI | ALT  | CTRL | LOWER|  SPACE |  | BKSPC | RAISE| ENTER | ALT   |GAMING|
 
             bindings = <
 &esc_tilda  &kp N1  &kp N2    &kp N3    &kp N4     &kp N5                                   &kp N6  &kp N7   &kp N8     &kp N9   &kp N0    &kp MINUS
@@ -110,18 +93,18 @@
         lower_layer {
             // TODO: Some binds are waiting for shifted keycode support.
             // ------------------------------------------------------------------------------------------------------------
-            // |       |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // | `     |   1 |   2 |   3  |   4  |   5  |                   |   6  |   7   |   8   |   9  |    0  |  F12  |
-            // |       |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   |   |
-            // |       |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
-            //               |     |      |      |      |        |  |       |      |       |       |      |
+            // |   `   |  F1 |  F2 |  F3  |  F4  |  F5  |                   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
+            // |       |  *  |  7  |  8   |  9   |  +   |                   |  £   |   {   |   }   |      |       |  F12  |
+            // |       |  /  |  4  |  5   |  6   |  -   |                   |  $   |   [   |   ]   |      |   \   |   |   |
+            // |       |  0  |  1  |  2   |  3   |  .   |        |  |  END  |  €   |   (   |   )   |      |       |       |
+            //               |     |      |      |      |        |  |  DEL  |      |       |       |      |
 
             bindings = <
 &kp GRAVE  &kp F1     &kp F2  &kp F3  &kp F4  &kp F5                        &kp F6      &kp F7    &kp F8    &kp F9  &kp F10   &kp F11
 &trans     &kp STAR   &kp N7  &kp N8  &kp N9  &kp PLUS                      &gbp        &kp LBRC  &kp RBRC  &trans  &trans    &kp F12
 &trans     &kp SLASH  &kp N4  &kp N5  &kp N6  &kp MINUS                     &kp DOLLAR  &kp LBKT  &kp RBKT  &trans  &kp BSLH  &kp PIPE
 &trans     &kp N0     &kp N1  &kp N2  &kp N3  &kp DOT    &trans    &kp END  &eur        &kp LPAR  &kp RPAR  &trans  &trans    &trans
-                      &trans  &trans  &trans  &trans     &trans    &kp DEL  &trans      &trans    &trans    &trans
+                      &trans  &trans  &trans  &trans     &trans    &kp DEL0 &trans      &trans    &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -130,9 +113,9 @@
         raise_layer {
             // ------------------------------------------------------------------------------------------------------------
             // |BTCLR| BT1  | BT2  |  BT3  |  BT4  |  BT5 |                |      |      |       |      |       |       |
-            // |     | INS  | PSCR | GUI   |       |      |                | PGUP |      |   ^   |      |       |       |
+            // |     | INS  | PSCR | GUI   |       |      |                | PGUP |      |   ^   |      |   0   |       |
             // |     | ALT  | CTRL | SHIFT |       | CAPS |                | PGDN |   <- |   v   |  ->  |  DEL  | BKSPC |
-            // |     | UNDO | CUT  | COPY  | PASTE |      |      |  |      |      |      |       |      |       |       |
+            // |     | UNDO | CUT  | COPY  | PASTE |      | MUTE |  |      |      |      |       |      |       |       |
             //              |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
@@ -147,11 +130,11 @@
         };
 
         // ------------------------------------------------------------------------------------------------------------
-        // |BTCLR | BT1   | BT2   |  BT3  |  BT4  |  BT5  |                |      |      |       |      |       |       |
-        // |EXTPWR|RGB_HUD|RGB_HUI|RGB_SAD|RGB_SAI|RGB_EFF|                |      |      |       |      |       |       |
-        // |      |RGB_BRD|RGB_BRI|       |       |       |                |      |      |       |      |       |       |
-        // |      |       |       |       |       |       |RGB_TOG| |      |      |      |       |      |       |       |
-        //                |       |       |       |       |       | |      |      |      |       |      |
+        // | ESC  |   `   |   1   |   2   |   3   |   4   |                |      |      |       |      |       |       |
+        // |  T   |  TAB  |   Q   |   W   |   E   |   R   |                |      |      |       |      |       |       |
+        // |  G   | CTRL  |   A   |   S   |   D   |   F   |                |      |      |       |      |       |       |
+        // |  B   | SHIFT |   Z   |   X   |   C   |   V   | MEDIA | | MUTE |      |      |       |      |       |       |
+        //                |   5   |   6   |   7   |   8   | SPACE | |LAYER0|      |      |       |      |
 
         gaming_layer {
             bindings = <
@@ -159,7 +142,7 @@
 &kp T    &kp TAB    &kp Q   &kp W   &kp E   &kp R                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp G    &kp LCTRL  &kp A   &kp S   &kp D   &kp F                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp B    &kp LSHFT  &kp Z   &kp X   &kp C   &kp V   &media_pp_next_prev    &kp C_MUTE  &trans  &trans  &trans  &trans  &trans  &trans
-                    &kp N6  &kp N7  &kp N8  &kp N9  &trans                 &to 0       &trans  &trans  &trans  &trans
+                    &kp N5  &kp N6  &kp N7  &kp N8l &SPACE                 &to 0       &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings =
