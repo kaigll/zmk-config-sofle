@@ -104,7 +104,7 @@
 &trans     &kp STAR   &kp N7  &kp N8  &kp N9  &kp PLUS                      &gbp        &kp LBRC  &kp RBRC  &trans  &trans    &kp F12
 &trans     &kp SLASH  &kp N4  &kp N5  &kp N6  &kp MINUS                     &kp DOLLAR  &kp LBKT  &kp RBKT  &trans  &kp BSLH  &kp PIPE
 &trans     &kp N0     &kp N1  &kp N2  &kp N3  &kp DOT    &trans    &kp END  &eur        &kp LPAR  &kp RPAR  &trans  &trans    &trans
-                      &trans  &trans  &trans  &trans     &trans    &kp DEL0 &trans      &trans    &trans    &trans
+                      &trans  &trans  &trans  &trans     &trans    &kp DEL  &trans      &trans    &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -142,7 +142,7 @@
 &kp T    &kp TAB    &kp Q   &kp W   &kp E   &kp R                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp G    &kp LCTRL  &kp A   &kp S   &kp D   &kp F                                      &trans  &trans  &trans  &trans  &trans  &trans
 &kp B    &kp LSHFT  &kp Z   &kp X   &kp C   &kp V   &media_pp_next_prev    &kp C_MUTE  &trans  &trans  &trans  &trans  &trans  &trans
-                    &kp N5  &kp N6  &kp N7  &kp N8l &SPACE                 &to 0       &trans  &trans  &trans  &trans
+                    &kp N5  &kp N6  &kp N7  &kp N8 &kp SPACE                 &to 0       &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings =
